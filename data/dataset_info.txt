@@ -1,0 +1,28 @@
+Criteo Uplift Dataset
+============================================================
+
+Source: https://huggingface.co/datasets/criteo/criteo-uplift
+
+Total rows: 13,979,592
+
+Features:
+  - f0: Value('float64')
+  - f1: Value('float64')
+  - f2: Value('float64')
+  - f3: Value('float64')
+  - f4: Value('float64')
+  - f5: Value('float64')
+  - f6: Value('float64')
+  - f7: Value('float64')
+  - f8: Value('float64')
+  - f9: Value('float64')
+  - f10: Value('float64')
+  - f11: Value('float64')
+  - treatment: Value('int64')
+  - conversion: Value('int64')
+  - visit: Value('int64')
+  - exposure: Value('int64')
+
+Files:
+  - raw/criteo_uplift.parquet: Full dataset in Parquet format
+  - processed/criteo_uplift_sample.csv: Sample of first 10,000 rows
