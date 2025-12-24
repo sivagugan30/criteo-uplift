@@ -18,11 +18,17 @@ dist/
 .ipynb_checkpoints/
 *.ipynb_checkpoints
 
-# Data files (large)
+# Data files (large raw data only)
 data/raw/
 data/processed/
 *.parquet
-*.csv
+
+# Keep visualization data (small CSVs for Streamlit)
+!visualizations/data/*.csv
+
+# Keep model artifacts (for deployment)
+# Note: Large models may need Git LFS
+# models/*.joblib
 
 # IDE
 .idea/
