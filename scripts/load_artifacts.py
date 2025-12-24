@@ -62,12 +62,24 @@ def load_visualization_data(filename):
     Load visualization data CSV.
     
     Available files:
+    Notebook 01 (EDA):
+    - 'nb01_eda_summary.csv' -> Dataset overview statistics
+    - 'nb01_outcome_distribution.csv' -> Conversion/visit/exposure rates
+    - 'nb01_treatment_distribution.csv' -> Treatment/control split
+    - 'nb01_uplift_by_quartile.csv' -> Uplift heterogeneity by f0
+    - 'nb01_feature_statistics.csv' -> Feature descriptive stats
+    
+    Notebook 02 (Meta-Learners):
     - 'nb02_predictions.csv' -> Test predictions from notebook 02
     - 'nb02_model_metrics.csv' -> Model comparison metrics
     - 'nb02_qini_curves.csv' -> Qini curve data
+    
+    Notebook 03 (Causal Forest):
     - 'nb03_predictions.csv' -> Causal Forest predictions
     - 'nb03_permutation_importance.csv' -> Feature importance
     - 'nb03_feature_uplift_correlation.csv' -> Feature correlations
+    
+    Notebook 04 (Advanced Evaluation):
     - 'nb04_decile_analysis.csv' -> Decile analysis data
     - 'nb04_calibration_data.csv' -> Calibration data
     - 'nb04_bootstrap_results.csv' -> Bootstrap test results
@@ -86,12 +98,23 @@ def get_image_path(filename):
     Get path to a saved visualization image.
     
     Available images:
+    Notebook 01 (EDA):
+    - 'nb01_outcome_distribution.png'
+    - 'nb01_treatment_distribution.png'
+    - 'nb01_uplift_by_quartile.png'
+    - 'nb01_ate_comparison.png'
+    
+    Notebook 02 (Meta-Learners):
     - 'nb02_qini_curves.png'
     - 'nb02_uplift_distributions.png'
     - 'nb02_model_comparison.png'
+    
+    Notebook 03 (Causal Forest):
     - 'nb03_permutation_importance.png'
     - 'nb03_feature_correlation.png'
     - 'nb03_qini_curves.png'
+    
+    Notebook 04 (Advanced Evaluation):
     - 'nb04_decile_lift.png'
     - 'nb04_calibration.png'
     - 'nb04_bootstrap_distributions.png'
