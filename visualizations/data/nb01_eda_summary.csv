@@ -1,0 +1,12 @@
+Metric,Value
+Total Samples,13979592.0
+Number of Features,12.0
+Control Samples,2096937.0
+Treatment Samples,11882655.0
+Control %,14.99998712408774
+Treatment %,85.00001287591226
+Conversion Rate %,0.29166802579073836
+Visit Rate %,4.699200091104232
+Exposure Rate %,3.063122299992732
+ATE (percentage points),0.11518730521316278
+Relative Lift %,59.4488117725262
