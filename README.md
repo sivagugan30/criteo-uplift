@@ -1,71 +1,86 @@
-# Criteo Uplift Dataset
+# Criteo Uplift Modeling
 
-This repository contains the [Criteo Uplift dataset](https://huggingface.co/datasets/criteo/criteo-uplift), a large-scale benchmark dataset for uplift modeling.
+An end-to-end uplift modeling project using the [Criteo Uplift Dataset](https://huggingface.co/datasets/criteo/criteo-uplift). Includes exploratory analysis, model training (S-Learner, T-Learner, X-Learner), evaluation, and an interactive Streamlit dashboard.
 
-## Dataset Description
+## 🚀 Live Demo
 
-The Criteo Uplift dataset is designed for research in uplift modeling (also known as causal inference in marketing). It contains approximately 25 million rows of anonymized data from a randomized controlled trial.
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://criteo-uplift.streamlit.app)
 
-### Features
+## 📊 What is Uplift Modeling?
 
-- **f0-f11**: 12 anonymized features (float values)
-- **treatment**: Binary indicator (0 = control, 1 = treatment)
-- **conversion**: Binary outcome variable
-- **visit**: Binary indicator for website visit
-- **exposure**: Binary indicator for ad exposure
+Uplift modeling predicts the **incremental impact** of a treatment (like showing an ad) on an individual's behavior. It answers: *"Who will convert **because of** the ad, not just who will convert?"*
 
-## Project Structure
+### The Four User Types
+
+| Segment | Without Ad | With Ad | Action |
+|---------|------------|---------|--------|
+| **Persuadables** | No | Yes | ✅ Target these! |
+| **Sure Things** | Yes | Yes | Save budget |
+| **Lost Causes** | No | No | Don't waste resources |
+| **Sleeping Dogs** | Yes | No | 🚫 Avoid! |
+
+## 📁 Project Structure
 
 ```
 criteo-uplift/
+├── streamlit_app/
+│   └── app_v2.py              # Main Streamlit dashboard
+├── notebooks/
+│   ├── 01_eda.ipynb           # Exploratory Data Analysis
+│   ├── 02_uplift_modeling.ipynb   # S/T/X Learner training
+│   ├── 03_causal_forest.ipynb # Causal Forest experiments
+│   ├── 04_advanced_evaluation.ipynb  # Qini curves, AUUC
+│   └── 05_customer_profiles.ipynb    # Segmentation & SHAP
+├── visualizations/
+│   ├── data/                  # Pre-computed CSVs for dashboard
+│   └── images/                # Saved plots
+├── models/                    # Trained model artifacts
 ├── data/
-│   ├── raw/                    # Original dataset files
-│   │   └── criteo_uplift.parquet
-│   ├── processed/              # Processed/sample files
-│   │   └── criteo_uplift_sample.csv
-│   └── dataset_info.txt        # Dataset metadata
+│   ├── raw/                   # Original parquet (gitignored)
+│   └── processed/             # Sample CSV (gitignored)
 ├── scripts/
-│   └── download_dataset.py     # Script to download the dataset
-├── requirements.txt
+│   └── download_dataset.py    # Download from HuggingFace
+├── requirements.txt           # Streamlit Cloud dependencies
 └── README.md
 ```
 
-## Setup
+## 🖥️ Run Locally
 
-1. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+# Clone the repo
+git clone https://github.com/YOUR_USERNAME/criteo-uplift.git
+cd criteo-uplift
 
-2. Download the dataset:
-   ```bash
-   python scripts/download_dataset.py
-   ```
+# Create virtual environment
+python -m venv criteo-env
+source criteo-env/bin/activate  # Windows: criteo-env\Scripts\activate
 
-## Usage
+# Install dependencies
+pip install -r requirements.txt
 
-### Loading the full dataset (Parquet)
-
-```python
-import pandas as pd
-
-df = pd.read_parquet("data/raw/criteo_uplift.parquet")
-print(df.shape)  # (~25M rows, 16 columns)
+# Run the Streamlit app
+streamlit run streamlit_app/app_v2.py
 ```
 
-### Loading from Hugging Face directly
+## ☁️ Deploy on Streamlit Cloud
 
-```python
-from datasets import load_dataset
+1. Push this repo to GitHub
+2. Go to [share.streamlit.io](https://share.streamlit.io)
+3. Connect your GitHub repo
+4. Set **Main file path**: `streamlit_app/app_v2.py`
+5. Deploy!
 
-ds = load_dataset("criteo/criteo-uplift")
-```
+## 📚 References
+
+- **Dataset Paper**: [A Large Scale Benchmark for Uplift Modeling](https://bitlater.github.io/files/large-scale-benchmark_comAH.pdf) (Diemert et al., Criteo Research, 2018)
+- **CausalML Library**: [Uber's CausalML](https://github.com/uber/causalml)
+
+## 📈 Key Findings
+
+- **T-Learner** performed best on this dataset (Qini Coefficient: 35.19)
+- Rule-based segmentation: ~25% Persuadables, ~22% Sure Things, ~27% Lost Causes, ~25% Sleeping Dogs
+- CATE dependence plots reveal which features drive treatment response
 
 ## License
 
-The dataset is provided by Criteo and is subject to their terms of use. See the [Hugging Face dataset page](https://huggingface.co/datasets/criteo/criteo-uplift) for more details.
-
-
-
-
-
+The dataset is provided by Criteo. See the [HuggingFace dataset page](https://huggingface.co/datasets/criteo/criteo-uplift) for terms of use.
