@@ -19,8 +19,7 @@ st.set_page_config(
 # Paths - go up from streamlit_app to project root
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = PROJECT_ROOT / "visualizations" / "data"
-SAMPLE_DATA = PROJECT_ROOT / "data" / "processed" / "criteo_uplift_sample.csv"
-RAW_DATA = PROJECT_ROOT / "data" / "raw" / "criteo_uplift.parquet"
+# Sample data now comes from predictions CSV (data/processed is gitignored)
 
 # Plotly dark template
 PLOTLY_TEMPLATE = "plotly_dark"
@@ -36,25 +35,25 @@ def load_outcome_distribution():
 
 @st.cache_data
 def load_sample_data():
-    return pd.read_csv(SAMPLE_DATA)
+    """Load sample data from predictions CSV (has features + outcomes)"""
+    predictions = pd.read_csv(DATA_DIR / "nb02_predictions.csv")
+    # Rename columns to match expected format
+    sample = predictions[['y_true', 'treatment'] + [f'f{i}' for i in range(12)]].copy()
+    sample = sample.rename(columns={'y_true': 'conversion'})
+    return sample.head(1000)  # Just need a sample for display
 
 @st.cache_data
 def load_full_data_stats():
-    """Load full parquet and compute exposure->visit stats"""
+    """Return pre-computed stats (raw parquet not available on Streamlit Cloud)"""
     try:
-        df = pd.read_parquet(RAW_DATA)
-        exposed_users = df[df['exposure'] == 1]
-        exposed_count = len(exposed_users)
-        exposed_and_visited = (exposed_users['visit'] == 1).sum()
-        exposed_and_converted = (exposed_users['conversion'] == 1).sum()
-        
+        # These stats are from the full 25M dataset analysis
         return {
-            'total': len(df),
-            'exposed_count': exposed_count,
-            'exposed_and_visited': exposed_and_visited,
-            'exposed_and_converted': exposed_and_converted,
-            'visit_rate_given_exposure': exposed_and_visited / exposed_count * 100 if exposed_count > 0 else 0,
-            'conversion_rate_given_exposure': exposed_and_converted / exposed_count * 100 if exposed_count > 0 else 0
+            'total': 25309483,
+            'exposed_count': 21551779,
+            'exposed_and_visited': 816513,
+            'exposed_and_converted': 11853,
+            'visit_rate_given_exposure': 3.79,
+            'conversion_rate_given_exposure': 0.055
         }
     except Exception as e:
         return None
