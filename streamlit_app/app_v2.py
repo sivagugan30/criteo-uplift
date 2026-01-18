@@ -477,7 +477,7 @@ def render_cate_tab():
         st.markdown("""
         I found this talk from Uber's data science team super insightful. I think this was around the launch of the CausalML library. They explain how they moved from propensity modeling to uplift modeling, and walk through the library basics.
         
-        🎥 [Uplift Modeling: From Causal Inference to Personalization (YouTube)](https://www.youtube.com/watch?v=2J9j7peWQgI)
+        [▶️ Watch on YouTube: Uplift Modeling - From Causal Inference to Personalization](https://www.youtube.com/watch?v=2J9j7peWQgI)
         """)
 
 
@@ -1249,6 +1249,18 @@ Contribution = (deviation from avg) × (feature importance) × (predicted uplift
     
     st.write("")
     st.info("**In my mind:** The curve flattens after ~20%. Beyond that, you're paying for diminishing returns.")
+    
+    st.write("")
+    with st.expander("Other Use Cases of Uplift Modeling", expanded=False):
+        st.markdown("""
+        Uplift modeling isn't just for ad targeting. Here are some other applications:
+        
+        - **Churn Reduction**: Which intervention will reduce a customer's churn probability the most?
+        - **Upselling**: Which marketing technique will increase the likelihood of a customer upgrading?
+        - **Offer Optimization**: Should you send a $10 or $20 discount? Uplift modeling helps you find the sweet spot.
+        
+        [Read more: Uplift Modeling - Practical Examples (Vidora/mParticle)](https://www.vidora.com/ml-in-business/uplift-modeling-some-practical-examples/)
+        """)
 
 
 def main():
