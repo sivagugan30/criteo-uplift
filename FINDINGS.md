@@ -1,5 +1,26 @@
 # Uplift Modeling on Criteo Dataset - Project Summary
 
+## TL;DR - Key Results
+
+| Metric | Value |
+|--------|-------|
+| **Best Model** | T-Learner |
+| **Qini Coefficient** | 35.19 |
+| **AUUC** | 0.339% |
+| **Dataset Size** | ~14M samples |
+| **ATE** | +0.115 percentage points (~59% relative lift) |
+
+### Customer Segments (Rule-Based)
+
+| Segment | % of Users | Action |
+|---------|------------|--------|
+| Persuadables | 25% | Target these |
+| Sure Things | 22% | Save budget |
+| Lost Causes | 27% | Don't waste resources |
+| Sleeping Dogs | 25% | Avoid treating |
+
+---
+
 ## Overview
 
 This project implements and evaluates uplift modeling techniques on the **Criteo Uplift Dataset**, a large-scale benchmark dataset from a randomized controlled trial (RCT) in digital advertising.
@@ -86,6 +107,28 @@ X-Learner is designed for imbalanced treatment/control splits, yet T-Learner per
 
 ---
 
+## Customer Segmentation (Notebook 5)
+
+### Segmentation Rules (Order Matters!)
+
+| Segment | Rule | Rationale |
+|---------|------|-----------|
+| **Sleeping Dogs** | uplift < -0.5% | Treatment hurts - check first for safety |
+| **Sure Things** | baseline > 50% | Will convert anyway - save budget |
+| **Persuadables** | uplift > 0.1% | Positive incremental value from treatment |
+| **Lost Causes** | Everything else | Low or no uplift |
+
+### Distribution
+
+| Segment | Count | Percentage | Mean Uplift |
+|---------|-------|------------|-------------|
+| Persuadables | 22,515 | 25.0% | Positive |
+| Sure Things | 19,977 | 22.2% | Variable |
+| Lost Causes | 24,640 | 27.4% | Near zero |
+| Sleeping Dogs | 22,868 | 25.4% | Negative |
+
+---
+
 ## Evaluation Metrics
 
 ### Qini Coefficient
@@ -108,10 +151,10 @@ X-Learner is designed for imbalanced treatment/control splits, yet T-Learner per
 
 | Type | Without Ad | With Ad | Action |
 |------|------------|---------|--------|
-| **Persuadables** ✅ | Won't buy | Will buy | Target these! |
+| **Persuadables** | Won't buy | Will buy | Target these! |
 | **Sure Things** | Will buy | Will buy | Don't waste ad $ |
 | **Lost Causes** | Won't buy | Won't buy | Don't waste ad $ |
-| **Sleeping Dogs** 🚫 | Will buy | Won't buy | Avoid! |
+| **Sleeping Dogs** | Will buy | Won't buy | Avoid! |
 
 Uplift modeling identifies **Persuadables** — users whose behavior changes because of the treatment.
 
@@ -130,45 +173,26 @@ Uplift modeling identifies **Persuadables** — users whose behavior changes bec
 
 ```
 criteo-uplift/
-├── data/
-│   ├── raw/criteo_uplift.parquet          # Full dataset (1.8GB)
-│   ├── processed/criteo_uplift_sample.csv # 10k sample
-│   └── dataset_info.txt
+├── streamlit_app/
+│   └── app_v2.py                    # Interactive dashboard
 ├── notebooks/
-│   ├── 01_eda.ipynb                       # Exploratory Data Analysis
-│   └── 02_uplift_modeling.ipynb           # Model training & evaluation
-├── scripts/
-│   └── download_dataset.py                # Dataset download script
-├── criteo-env/                            # Python virtual environment
-├── requirements.txt
-├── README.md
-└── FINDINGS.md                            # This file
+│   ├── 01_eda.ipynb                 # Exploratory Data Analysis
+│   ├── 02_uplift_modeling.ipynb     # Model training & evaluation
+│   ├── 03_causal_forest.ipynb       # Causal Forest experiments
+│   ├── 04_advanced_evaluation.ipynb # Qini curves, AUUC
+│   └── 05_customer_profiles.ipynb   # Segmentation & SHAP
+├── visualizations/
+│   ├── data/                        # Pre-computed CSVs
+│   └── images/                      # Saved plots
+├── data/
+│   └── raw/criteo_uplift.parquet    # Full dataset (gitignored)
+├── models/                          # Saved model artifacts
+├── MODEL_CARD.md                    # Model documentation
+├── DATA_DICTIONARY.md               # Feature documentation
+├── FINDINGS.md                      # This file
+├── LICENSE                          # MIT License
+└── README.md
 ```
-
----
-
-## Dependencies
-
-```
-datasets>=2.14.0
-pandas>=1.5.0
-pyarrow>=12.0.0
-matplotlib>=3.7.0
-seaborn>=0.12.0
-scikit-learn>=1.3.0
-xgboost>=2.0.0
-causalml>=0.15.0
-numpy<2.4  # Required for numba compatibility
-```
-
----
-
-## References
-
-1. **Radcliffe & Surry (2011)** - "Real-World Uplift Modelling with Significance-Based Uplift Trees"
-2. **Künzel et al. (2019)** - "Metalearners for Estimating Heterogeneous Treatment Effects using Machine Learning" (X-Learner paper)
-3. **CausalML Documentation** - [github.com/uber/causalml](https://github.com/uber/causalml)
-4. **Criteo Dataset** - [huggingface.co/datasets/criteo/criteo-uplift](https://huggingface.co/datasets/criteo/criteo-uplift)
 
 ---
 
@@ -184,3 +208,13 @@ numpy<2.4  # Required for numba compatibility
 
 5. **Metrics matter**: Traditional ML metrics (accuracy, AUC) don't apply. Use Qini, AUUC, and business-focused Top K% analysis.
 
+6. **Uplift vs Propensity**: Propensity models predict who will convert. Uplift models predict who will convert *because of* the treatment. That's the key difference.
+
+---
+
+## References
+
+1. **Diemert et al. (2018)** - "A Large Scale Benchmark for Uplift Modeling" - [Paper](https://bitlater.github.io/files/large-scale-benchmark_comAH.pdf)
+2. **Künzel et al. (2019)** - "Metalearners for Estimating Heterogeneous Treatment Effects using Machine Learning" (X-Learner paper)
+3. **CausalML Documentation** - [github.com/uber/causalml](https://github.com/uber/causalml)
+4. **Criteo Dataset** - [huggingface.co/datasets/criteo/criteo-uplift](https://huggingface.co/datasets/criteo/criteo-uplift)
