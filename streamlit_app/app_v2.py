@@ -471,6 +471,14 @@ def render_cate_tab():
     
     st.write("")
     st.info("**In my mind:** This is where uplift modeling becomes powerful. Instead of showing ads to everyone (expensive) or no one (no revenue), I find the sweet spot - the users whose behavior actually changes because of the ad.")
+    
+    st.write("")
+    with st.expander("Uber's Take on Uplift Modeling", expanded=False):
+        st.markdown("""
+        I found this talk from Uber's data science team super insightful. I think this was around the launch of the CausalML library. They explain how they moved from propensity modeling to uplift modeling, and walk through the library basics.
+        
+        🎥 [Uplift Modeling: From Causal Inference to Personalization (YouTube)](https://www.youtube.com/watch?v=2J9j7peWQgI)
+        """)
 
 
 @st.cache_data
@@ -843,13 +851,6 @@ There's a lot to learn here. I've only scratched the surface.
 
 The real question now - which users are Persuadables and which are Sleeping Dogs? Who should I actually spend ads on?
 """)
-    
-    with st.expander("📚 A Talk That Helped Me Understand This Better", expanded=False):
-        st.markdown("""
-        I found this talk from Uber's data science team super insightful. I think this was around the launch of the CausalML library. They explain how they moved from propensity modeling to uplift modeling, and walk through the library basics.
-        
-        🎥 [Uplift Modeling: From Causal Inference to Personalization (YouTube)](https://www.youtube.com/watch?v=2J9j7peWQgI)
-        """)
     
     with st.expander("📝 A Note on Propensity Model Evaluation", expanded=False):
         st.markdown("""
