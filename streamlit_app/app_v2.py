@@ -850,6 +850,15 @@ The real question now - which users are Persuadables and which are Sleeping Dogs
         
         🎥 [Uplift Modeling: From Causal Inference to Personalization (YouTube)](https://www.youtube.com/watch?v=2J9j7peWQgI)
         """)
+    
+    with st.expander("📝 A Note on Propensity Model Evaluation", expanded=False):
+        st.markdown("""
+        While working on this, I wondered: *"How would I evaluate a propensity model using deciles?"*
+        
+        My journey: Lift by decile has no single number. AUC-ROC isn't decile-based. KS Statistic measures separation at one threshold, not the full ranking.
+        
+        The answer: **Spearman correlation** between decile number and conversion rate. A good propensity model should have a negative slope (D1 highest, D10 lowest). Correlation close to -1.0 = great model. Simple, intuitive, decile-based.
+        """)
 
 
 def render_customer_segmentation_tab():
