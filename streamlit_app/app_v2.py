@@ -1253,13 +1253,9 @@ Contribution = (deviation from avg) × (feature importance) × (predicted uplift
     st.write("")
     with st.expander("Other Use Cases of Uplift Modeling", expanded=False):
         st.markdown("""
-        Uplift modeling isn't just for ad targeting. Here are some other applications:
+        Beyond ad targeting: churn reduction, upselling, offer optimization.
         
-        - **Churn Reduction**: Which intervention will reduce a customer's churn probability the most?
-        - **Upselling**: Which marketing technique will increase the likelihood of a customer upgrading?
-        - **Offer Optimization**: Should you send a $10 or $20 discount? Uplift modeling helps you find the sweet spot.
-        
-        [Read more: Uplift Modeling - Practical Examples (Vidora/mParticle)](https://www.vidora.com/ml-in-business/uplift-modeling-some-practical-examples/)
+        [Read more (Vidora/mParticle)](https://www.vidora.com/ml-in-business/uplift-modeling-some-practical-examples/)
         """)
 
 
