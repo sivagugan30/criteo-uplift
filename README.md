@@ -78,8 +78,7 @@ streamlit run streamlit_app/app_v2.py
 ## 📈 Key Findings
 
 - **T-Learner** performed best on this dataset (Qini Coefficient: 35.19)
-- Rule-based segmentation: ~25% Persuadables, ~22% Sure Things, ~27% Lost Causes, ~25% Sleeping Dogs
-- CATE dependence plots reveal which features drive treatment response
+- The curve flattens after ~20%. Beyond that, you're paying for diminishing returns.
 
 ## License
 
