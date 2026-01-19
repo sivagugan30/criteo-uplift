@@ -135,7 +135,7 @@ def render_background_tab():
     
     st.write("")
     st.divider()
-    st.caption("**The OG Paper:** From the team behind the dataset. Largest public RCT for uplift modeling. Paper: [A Large Scale Benchmark for Uplift Modeling, 2018](https://bitlater.github.io/files/large-scale-benchmark_comAH.pdf)")
+    st.caption("**The OG Paper:** From the team behind the dataset. Largest public RCT for uplift modeling. [A Large Scale Benchmark for Uplift Modeling, 2018](https://bitlater.github.io/files/large-scale-benchmark_comAH.pdf)")
 
 
 def render_data_story_tab():
