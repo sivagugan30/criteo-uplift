@@ -861,19 +861,17 @@ The real question now - which users are Persuadables and which are Sleeping Dogs
         The answer: **Spearman correlation** between decile number and conversion rate. A good propensity model should have a negative slope (D1 highest, D10 lowest). Correlation close to -1.0 = great model. Simple, intuitive, decile-based.
         """)
     
-    with st.expander("📄 Research Questions I'm Still Exploring", expanded=False):
+    with st.expander("A Paper on Evaluation Noise", expanded=False):
         st.markdown("""
-        - What do "non-CATE models" mean and how can they outperform proper CATE estimators?
-        - Why are standard Qini curves high-variance on RCT data?
-        - Why is the usual Qini "unnecessarily noisy" from random RCT sampling?
-        - How do the RCT split and the ML split coexist?
-        - What is a "separate prediction model for baseline outcome"?
-        - How are adjusted outcomes computed and fed into Qini?
-        - How do control units contribute to evaluation without individual counterfactuals?
-        - Is adjusted Y only for test-set evaluation?
-        - How do authors estimate variance reduction empirically?
+        I noticed my Qini scores jumped around with different test splits. Turns out this is a known issue.
         
-        Sources: [Variance Reduction in Uplift (arXiv)](https://arxiv.org/pdf/2210.02152.pdf) | [ScienceDirect](https://www.sciencedirect.com/science/article/pii/S037722172300721X)
+        This paper suggests: train the model as usual, but for Qini calculation use adjusted Y:
+        
+        `adj_Y = Y - pred_Y` (where pred_Y is predicted baseline outcome)
+        
+        Result: more stable metrics, ~10% less data needed.
+        
+        [Read the paper (arXiv)](https://arxiv.org/pdf/2210.02152.pdf)
         """)
 
 
