@@ -135,7 +135,7 @@ def render_background_tab():
     
     st.write("")
     st.divider()
-    st.caption("📄 **The OG Paper:** This project uses the Criteo Uplift Dataset, released by Criteo Research in 2018. It's the largest public uplift modeling benchmark (25M samples from a randomized control trial). [Read the paper](https://bitlater.github.io/files/large-scale-benchmark_comAH.pdf)")
+    st.caption("**The OG Paper:** From the team behind the dataset. Largest public RCT for uplift modeling. Paper: [A Large Scale Benchmark for Uplift Modeling, 2018](https://bitlater.github.io/files/large-scale-benchmark_comAH.pdf)")
 
 
 def render_data_story_tab():
@@ -477,7 +477,7 @@ def render_cate_tab():
         st.markdown("""
         I found this talk from Uber's data science team super insightful. I think this was around the launch of the CausalML library. They explain how they moved from propensity modeling to uplift modeling, and walk through the library basics.
         
-        [▶️ Watch on YouTube: Uplift Modeling - From Causal Inference to Personalization](https://www.youtube.com/watch?v=2J9j7peWQgI)
+        YouTube: [Uplift Modeling - From Causal Inference to Personalization, 2019](https://www.youtube.com/watch?v=2J9j7peWQgI)
         """)
 
 
@@ -852,7 +852,7 @@ There's a lot to learn here. I've only scratched the surface.
 The real question now - which users are Persuadables and which are Sleeping Dogs? Who should I actually spend ads on?
 """)
     
-    with st.expander("📝 A Note on Propensity Model Evaluation", expanded=False):
+    with st.expander("A Note on Propensity Model Evaluation", expanded=False):
         st.markdown("""
         While working on this, I wondered: *"How would I evaluate a propensity model using deciles?"*
         
@@ -871,7 +871,7 @@ The real question now - which users are Persuadables and which are Sleeping Dogs
         
         Result: more stable metrics, ~10% less data needed.
         
-        [Read the paper (arXiv)](https://arxiv.org/pdf/2210.02152.pdf)
+        Paper: [Variance Reduction Methods for Uplift Model Evaluation, 2022](https://arxiv.org/pdf/2210.02152.pdf)
         """)
 
 
@@ -1264,11 +1264,11 @@ Contribution = (deviation from avg) × (feature importance) × (predicted uplift
     st.info("**In my mind:** The curve flattens after ~20%. Beyond that, you're paying for diminishing returns.")
     
     st.write("")
-    with st.expander("Other Use Cases of Uplift Modeling", expanded=False):
+    with st.expander("Uplift Modelling Beyond Marketing", expanded=False):
         st.markdown("""
-        Beyond ad targeting: churn reduction, upselling, offer optimization.
+        Uplift modeling isn't just for ads. This paper applies it to student retention - which students will actually benefit from tutoring vs. which are already on track or lost causes?
         
-        [Read more (Vidora/mParticle)](https://www.vidora.com/ml-in-business/uplift-modeling-some-practical-examples/)
+        Paper: [Preventing Student Dropout with Uplift Modeling, 2020](https://www.sciencedirect.com/science/article/pii/S0167923620300750)
         """)
 
 
