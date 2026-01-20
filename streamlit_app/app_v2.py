@@ -65,14 +65,12 @@ def render_intro_tab():
     st.title("Uplift Modeling")
     st.write("")
     
-    st.markdown("_'Half the money I spend on advertising is wasted; the trouble is I don't know which half.'_ — John Wanamaker")
-    st.write("")
     st.markdown("_'The question isn't \"will they buy?\" but \"will they buy because of us?\"'_")
     
     st.write("")
     st.write("")
     
-    st.markdown("**This project answers that question.**")
+    st.markdown("Hi, I'm **Siva**. I have tried to answer that question. Hope you find it useful :)")
     
     st.write("")
     st.write("")
