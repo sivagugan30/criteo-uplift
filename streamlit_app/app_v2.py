@@ -59,6 +59,29 @@ def load_full_data_stats():
         return None
 
 
+def render_intro_tab():
+    """Intro page"""
+    
+    st.title("Uplift Modeling")
+    st.write("")
+    
+    st.markdown("_'Half the money I spend on advertising is wasted; the trouble is I don't know which half.'_ — John Wanamaker")
+    st.write("")
+    st.markdown("_'The question isn't \"will they buy?\" but \"will they buy because of us?\"'_")
+    
+    st.write("")
+    st.write("")
+    
+    st.markdown("**This project answers that question.**")
+    
+    st.write("")
+    st.write("")
+    st.write("")
+    
+    st.write("**Next Page**: Use the Navigation bar in the top left corner to start")
+    st.write("**Last update**: Jan 18, 2025")
+
+
 def render_background_tab():
     """Tab 1: What is Uplift Modeling?"""
     
@@ -1278,7 +1301,7 @@ def main():
         st.title("Navigation")
         page = st.radio(
             "Select Page",
-            ["Background", "The Data Story", "From ATE to CATE", "Model Evaluation", "Customer Segmentation"],
+            ["Intro", "Background", "The Data Story", "From ATE to CATE", "Model Evaluation", "Customer Segmentation"],
             label_visibility="collapsed"
         )
         
@@ -1295,7 +1318,9 @@ def main():
         st.markdown("Built by [Sivagugan Jayachandran](https://www.linkedin.com/in/sivagugan-jayachandran/)")
     
     # Render selected page
-    if page == "Background":
+    if page == "Intro":
+        render_intro_tab()
+    elif page == "Background":
         render_background_tab()
     elif page == "The Data Story":
         render_data_story_tab()
