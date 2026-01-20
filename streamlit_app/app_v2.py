@@ -1285,7 +1285,7 @@ Contribution = (deviation from avg) × (feature importance) × (predicted uplift
         st.markdown("""
         Uplift modeling isn't just for ads. This paper applies it to student retention - which students will actually benefit from tutoring vs. which are already on track or lost causes?
         
-        Paper: [Preventing Student Dropout with Uplift Modeling, 2020](https://www.sciencedirect.com/science/article/pii/S0167923620300750)
+        Paper: [Preventing Student Dropout with Uplift Modeling, 2020](https://www.sciencedirect.com/science/article/pii/S0167923620300750). Interesting read.
         """)
 
 
