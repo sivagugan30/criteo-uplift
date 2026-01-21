@@ -294,13 +294,13 @@ The 15% holdout is just enough to measure if the ads actually work.
     
     with col2:
         st.info("""
-**In my mind:** This confused me at first. But they're NOT a strict funnel.
+**In my mind:** At first glance this looked impossible. How can only 3.06% see the ad, but 4.70% visit the website?
 
 **Exposure = 3.06%** → Only 3% of users actually *saw* the ad (ad blocking, below fold, didn't load)
 
 **Visit = 4.70%** → 4.7% visited the site, but this includes organic search, direct traffic, other campaigns, etc.
 
-A user can visit the website **without** seeing this specific ad. Think of exposure as "did our billboard reach them" and visit as "did they show up at our store" - people can show up without seeing the billboard.
+A user can visit the website **without** seeing this specific ad as well.
 """)
     
     # The REAL Funnel: Users who saw the ad
@@ -346,7 +346,7 @@ A user can visit the website **without** seeing this specific ad. Think of expos
         st.info("Loading full dataset to calculate exposure-based funnel...")
     
     # Treatment Effect
-    st.subheader("Treatment Effect")
+    st.subheader("Average Treatment Effect(ATE)")
     
     relative_lift = get_metric('Relative Lift %')
     
