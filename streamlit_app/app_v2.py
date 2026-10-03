@@ -64,7 +64,7 @@ def render_intro_tab():
     
     st.title("Uplift Modeling")
     st.write("")
-    st.code("'The question isn't will they buy? but will they buy because of us?'")
+    st.code("'The question isn't will they buy? but will they buy because of ads?'")
     st.write("")
     st.write("")
     st.write("Hi, I'm Siva, MS Data Science student. I have tried to answer that question. Hope you find this project useful :)")
